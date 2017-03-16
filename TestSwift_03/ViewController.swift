@@ -104,6 +104,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    //禁止左滑删除，只允许在编辑状态下删除
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if tableView.isEditing {
+            return .delete
+        } else {
+            return .none
+        }
+    }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         print("sourceIndexRow: \(sourceIndexPath.row)  destinationIndexRow: \(destinationIndexPath.row)")
